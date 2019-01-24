@@ -13,6 +13,7 @@ import java.util.List;
 public class MainViewModel extends AndroidViewModel {
 
     private LiveData<List<CharacterEntity>> charactersLiveData;
+    private LiveData<List<CharacterEntity>> favoriteCharactersLiveData;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -24,5 +25,17 @@ public class MainViewModel extends AndroidViewModel {
         }
 
         return charactersLiveData;
+    }
+
+    public LiveData<List<CharacterEntity>> loadFavoriteCharacters() {
+        if (favoriteCharactersLiveData == null) {
+            favoriteCharactersLiveData = Repository.getInstance(getApplication()).loadFavoriteCharacters();
+        }
+
+        return favoriteCharactersLiveData;
+    }
+
+    public void addToFavorites(CharacterEntity character) {
+        Repository.getInstance(getApplication()).insertCharacter(character);
     }
 }

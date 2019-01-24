@@ -3,12 +3,15 @@ package com.gotcollection.joaobb.gotcollection.db;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
+import com.gotcollection.joaobb.gotcollection.db.converter.Converters;
 import com.gotcollection.joaobb.gotcollection.db.dao.CharacterDao;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 
-@Database(entities = {CharacterEntity.class}, version = 1)
+@Database(entities = {CharacterEntity.class}, version = 1, exportSchema = false )
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final Object LOCK = new Object();

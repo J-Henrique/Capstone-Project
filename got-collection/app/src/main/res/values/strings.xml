@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">GotCollection</string>
+    <string name="app_name">GoT Collection</string>
+
+    <string name="tab_item_characters">Characters</string>
+
+    <string name="tab_item_favorites">Favorites</string>
+
+    <string name="action_search">Search</string>
 </resources>

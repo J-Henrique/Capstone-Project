@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import com.gotcollection.joaobb.gotcollection.R;
 
-public class CharacterListFragment extends Fragment {
+public class FavoriteFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_characters_list2, container, false);
+        return inflater.inflate(R.layout.fragment_favorite, container, false);
     }
 }

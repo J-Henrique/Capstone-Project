@@ -28,19 +28,17 @@ public class MainActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.setViewModel(mViewModel);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.main);
+        mBinding.toolbar.inflateMenu(R.menu.main);
 
-        ViewPager viewPager = findViewById(R.id.viewPager);
         CharactersFragmentPagerAdapter pagerAdapter = new CharactersFragmentPagerAdapter(this, getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
+        mBinding.viewPager.setAdapter(pagerAdapter);
 
-        setupTabLayout(viewPager);
+        setupTabLayout();
     }
 
-    private void setupTabLayout(ViewPager viewPager) {
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
-        tabLayout.setupWithViewPager(viewPager);
+    private void setupTabLayout() {
+        TabLayout tabLayout = mBinding.tabLayout;
+        tabLayout.setupWithViewPager(mBinding.viewPager);
 
         // Characters tab
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_people);

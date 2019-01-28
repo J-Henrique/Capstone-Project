@@ -1,5 +1,7 @@
 package com.gotcollection.joaobb.gotcollection.ui.fragment;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,8 +17,10 @@ import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.FragmentCharactersBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 import com.gotcollection.joaobb.gotcollection.ui.adapter.CharactersListAdapter;
+import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CharacterFragment extends Fragment {
 
@@ -24,6 +28,7 @@ public class CharacterFragment extends Fragment {
     RecyclerView.LayoutManager mLayoutManager;
 
     FragmentCharactersBinding mBinding;
+    MainViewModel mViewModel;
 
     @Nullable
     @Override
@@ -36,8 +41,19 @@ public class CharacterFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mBinding.rvCharactersList.setLayoutManager(mLayoutManager);
 
-        mCharactersListAdapter.setDataset(new ArrayList<CharacterEntity>());
-
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        mViewModel.loadCharacters().observe(this, new Observer<List<CharacterEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<CharacterEntity> characterEntities) {
+                mCharactersListAdapter.setDataset(characterEntities);
+            }
+        });
     }
 }

@@ -42,15 +42,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
     }
 
     public void setDataset(List<CharacterEntity> charactersList) {
-        // TODO: vincular dados originais
-        CharacterEntity entity = new CharacterEntity();
-        entity.setId("123");
-        entity.setName("Mock name");
-
-        List<CharacterEntity> list = new ArrayList<>();
-        list.add(entity);
-
-        mDataset = list;
+        mDataset = charactersList;
         notifyDataSetChanged();
     }
 

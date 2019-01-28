@@ -36,14 +36,22 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        tools:text="Title goes here"
+                        tools:text="Daenerys Targaryen"
                         android:text="@{character.name}"
                         android:textSize="24sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        tools:text="text text text text text text text text text text text text text"
+                        tools:text="House Targaryen"
+                        android:text="@{character.house}"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        tools:text="Valyrian"
+                        android:text="@{character.culture}"
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

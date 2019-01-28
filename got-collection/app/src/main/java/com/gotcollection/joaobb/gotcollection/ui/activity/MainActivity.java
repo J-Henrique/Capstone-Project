@@ -12,8 +12,6 @@ import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     ActivityMainBinding mBinding;
     MainViewModel mViewModel;
 

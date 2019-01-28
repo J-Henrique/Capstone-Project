@@ -3,6 +3,7 @@ package com.gotcollection.joaobb.gotcollection;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gotcollection.joaobb.gotcollection.api.model.CharacterResultModel;
@@ -85,13 +86,17 @@ public class Repository {
         });
     }
 
-    public void loadCharacterByName() {
-        characterService.getCharacterByName().enqueue(new Callback<CharacterResultModel>() {
+    public void loadCharacterByName(@NonNull String characterName) {
+        characterService.getCharacterByName(characterName).enqueue(new Callback<CharacterResultModel>() {
             @Override
             public void onResponse(Call<CharacterResultModel> call, Response<CharacterResultModel> response) {
                 Log.d(TAG, "onResponse: " + response.body());
 
-                charactersObservable.setValue(Arrays.asList(response.body().getCharacterResult()));
+                if (response.body() != null) {
+                    charactersObservable.setValue(Arrays.asList(response.body().getCharacterResult()));
+                } else {
+                    charactersObservable.setValue(null);
+                }
             }
 
             @Override

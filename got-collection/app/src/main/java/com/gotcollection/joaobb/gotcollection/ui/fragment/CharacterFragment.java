@@ -42,23 +42,25 @@ public class CharacterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-        mViewModel.getCharactersObservable().observe(this, new Observer<List<CharacterEntity>>() {
+        mViewModel.getLoadingFlagObservable().observe(getActivity(), new Observer<Boolean>() {
             @Override
-            public void onChanged(@Nullable List<CharacterEntity> characterEntities) {
-                mCharactersListAdapter.setDataset(characterEntities);
-                hideLoading();
+            public void onChanged(@Nullable Boolean isLoading) {
+                if (isLoading) {
+                    mBinding.pbLoading.setVisibility(View.VISIBLE);
+                } else {
+                    mBinding.pbLoading.setVisibility(View.GONE);
+                }
             }
         });
 
-        showLoading();
+        mViewModel.getCharactersObservable().observe(getActivity(), new Observer<List<CharacterEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<CharacterEntity> characterEntities) {
+                mCharactersListAdapter.setDataset(characterEntities);
+                mViewModel.hideLoading();
+            }
+        });
+
         mViewModel.loadCharacters();
-    }
-
-    private void showLoading() {
-        mBinding.pbLoading.setVisibility(View.VISIBLE);
-    }
-
-    private void hideLoading() {
-        mBinding.pbLoading.setVisibility(View.GONE);
     }
 }

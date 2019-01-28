@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
 
+import com.gotcollection.joaobb.gotcollection.api.model.CharacterResultModel;
 import com.gotcollection.joaobb.gotcollection.api.service.CharacterService;
 import com.gotcollection.joaobb.gotcollection.db.AppDatabase;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
@@ -26,6 +27,8 @@ public class Repository {
     private static Repository sRepositoryInstance;
 
     private CharacterService characterService;
+
+    final MutableLiveData<List<CharacterEntity>> charactersObservable = new MutableLiveData<>();
 
     private Repository(final Context context) {
 
@@ -60,25 +63,43 @@ public class Repository {
         appDatabase.characterDao().insertCharacter(character);
     }
 
-    public LiveData<List<CharacterEntity>> loadCharacters() {
-        final MutableLiveData<List<CharacterEntity>> data = new MutableLiveData<>();
+    public LiveData<List<CharacterEntity>> getCharactersObservable() {
+        return charactersObservable;
+    }
 
+    public void loadCharacters() {
         characterService.getCharacters().enqueue(new Callback<CharacterEntity[]>() {
             @Override
             public void onResponse(Call<CharacterEntity[]> call, Response<CharacterEntity[]> response) {
                 Log.d(TAG, "onResponse() returned: " + Arrays.asList(response.body()).size());
 
-                data.setValue(Arrays.asList(response.body()));
+                charactersObservable.setValue(Arrays.asList(response.body()));
             }
 
             @Override
             public void onFailure(Call<CharacterEntity[]> call, Throwable t) {
                 Log.e(TAG, "onFailure: t", t);
 
-                data.setValue(null);
+                charactersObservable.setValue(null);
             }
         });
+    }
 
-        return data;
+    public void loadCharacterByName() {
+        characterService.getCharacterByName().enqueue(new Callback<CharacterResultModel>() {
+            @Override
+            public void onResponse(Call<CharacterResultModel> call, Response<CharacterResultModel> response) {
+                Log.d(TAG, "onResponse: " + response.body());
+
+                charactersObservable.setValue(Arrays.asList(response.body().getCharacterResult()));
+            }
+
+            @Override
+            public void onFailure(Call<CharacterResultModel> call, Throwable t) {
+                Log.e(TAG, "onFailure: t", t);
+
+                charactersObservable.setValue(null);
+            }
+        });
     }
 }

@@ -19,9 +19,9 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<List<CharacterEntity>> loadCharacters() {
+    public LiveData<List<CharacterEntity>> getCharactersObservable() {
         if (charactersLiveData == null) {
-            charactersLiveData = Repository.getInstance(getApplication()).loadCharacters();
+            charactersLiveData = Repository.getInstance(getApplication()).getCharactersObservable();
         }
 
         return charactersLiveData;
@@ -29,10 +29,18 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<CharacterEntity>> loadFavoriteCharacters() {
         if (favoriteCharactersLiveData == null) {
-            favoriteCharactersLiveData = Repository.getInstance(getApplication()).loadFavoriteCharacters();
+            favoriteCharactersLiveData = Repository.getInstance(getApplication()).getCharactersObservable();
         }
 
         return favoriteCharactersLiveData;
+    }
+
+    public void loadCharacters() {
+        Repository.getInstance(getApplication()).loadCharacters();
+    }
+
+    public void loadCharacterByName() {
+        Repository.getInstance(getApplication()).loadCharacterByName();
     }
 
     public void addToFavorites(CharacterEntity character) {

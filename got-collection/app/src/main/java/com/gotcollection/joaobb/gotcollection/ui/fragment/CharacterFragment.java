@@ -19,7 +19,6 @@ import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 import com.gotcollection.joaobb.gotcollection.ui.adapter.CharactersListAdapter;
 import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterFragment extends Fragment {
@@ -49,11 +48,13 @@ public class CharacterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-        mViewModel.loadCharacters().observe(this, new Observer<List<CharacterEntity>>() {
+        mViewModel.getCharactersObservable().observe(this, new Observer<List<CharacterEntity>>() {
             @Override
             public void onChanged(@Nullable List<CharacterEntity> characterEntities) {
                 mCharactersListAdapter.setDataset(characterEntities);
             }
         });
+
+        mViewModel.loadCharacters();
     }
 }

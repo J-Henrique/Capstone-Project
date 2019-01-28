@@ -1,5 +1,6 @@
 package com.gotcollection.joaobb.gotcollection.ui.adapter;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,13 +10,14 @@ import android.view.ViewGroup;
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.CharacterCardBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAdapter.CharactersViewHolder> {
 
     private List<CharacterEntity> mDataset;
+    private Context mContext;
 
     @NonNull
     @Override
@@ -26,6 +28,8 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
                 viewGroup,
                 false);
 
+        mContext = viewGroup.getContext();
+
         return new CharactersViewHolder(binding);
     }
 
@@ -33,6 +37,9 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
     public void onBindViewHolder(@NonNull CharactersViewHolder charactersViewHolder, int i) {
         CharacterEntity character = mDataset.get(i);
 
+        String imagePath = mContext.getResources().getString(R.string.gotMiscUrl) + character.getImageLink();
+
+        Picasso.get().load(imagePath).into(charactersViewHolder.mBinding.ivPicture);
         charactersViewHolder.bind(character);
     }
 

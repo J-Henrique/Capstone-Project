@@ -3,9 +3,7 @@ package com.gotcollection.joaobb.gotcollection.ui.activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityMainBinding;

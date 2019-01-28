@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +22,6 @@ import java.util.List;
 public class CharacterFragment extends Fragment {
 
     CharactersListAdapter mCharactersListAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
 
     FragmentCharactersBinding mBinding;
     MainViewModel mViewModel;
@@ -36,9 +33,6 @@ public class CharacterFragment extends Fragment {
 
         mCharactersListAdapter = new CharactersListAdapter();
         mBinding.rvCharactersList.setAdapter(mCharactersListAdapter);
-
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mBinding.rvCharactersList.setLayoutManager(mLayoutManager);
 
         return mBinding.getRoot();
     }
@@ -52,9 +46,19 @@ public class CharacterFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<CharacterEntity> characterEntities) {
                 mCharactersListAdapter.setDataset(characterEntities);
+                hideLoading();
             }
         });
 
+        showLoading();
         mViewModel.loadCharacters();
+    }
+
+    private void showLoading() {
+        mBinding.pbLoading.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoading() {
+        mBinding.pbLoading.setVisibility(View.GONE);
     }
 }

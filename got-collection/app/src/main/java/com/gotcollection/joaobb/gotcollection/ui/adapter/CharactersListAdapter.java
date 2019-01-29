@@ -39,7 +39,12 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
 
         String imagePath = mContext.getResources().getString(R.string.gotMiscUrl) + character.getImageLink();
 
-        Picasso.get().load(imagePath).into(charactersViewHolder.mBinding.ivPicture);
+        Picasso
+            .get()
+            .load(imagePath)
+            .fit()
+            .into(charactersViewHolder.mBinding.ivPicture);
+
         charactersViewHolder.bind(character);
     }
 

@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityDetailsBinding;
+import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
+import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -18,5 +22,19 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+
+        if (getIntent().hasExtra(EXTRA_SELECTED_CHARACTER)) {
+            CharacterEntity selectedItem = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_SELECTED_CHARACTER));
+
+            mBinding.setCharacter(selectedItem);
+
+            String imagePath = getResources().getString(R.string.gotMiscUrl) + selectedItem.getImageLink();
+
+            Picasso
+                .get()
+                .load(imagePath)
+                .fit()
+                .into(mBinding.ivPicture);
+        }
     }
 }

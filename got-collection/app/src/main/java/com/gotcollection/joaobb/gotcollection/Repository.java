@@ -74,7 +74,11 @@ public class Repository {
             public void onResponse(Call<CharacterEntity[]> call, Response<CharacterEntity[]> response) {
                 Log.d(TAG, "onResponse() returned: " + Arrays.asList(response.body()).size());
 
-                charactersObservable.setValue(Arrays.asList(response.body()));
+                /*
+                    ATTENTION:
+                    Due large API mass, the characters being returned when no filter is applied is limited up to 50
+                */
+                charactersObservable.setValue(Arrays.asList(response.body()).subList(0, 50));
             }
 
             @Override

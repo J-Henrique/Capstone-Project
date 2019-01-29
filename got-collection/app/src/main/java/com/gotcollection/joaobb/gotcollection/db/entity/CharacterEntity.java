@@ -4,6 +4,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import org.parceler.Parcel;
+
+@Parcel
 @Entity(tableName = "characters")
 public class CharacterEntity {
 

@@ -1,16 +1,22 @@
 package com.gotcollection.joaobb.gotcollection.ui.activity;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityMainBinding;
+import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 import com.gotcollection.joaobb.gotcollection.ui.adapter.CharactersFragmentPagerAdapter;
 import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
+
+import org.parceler.Parcels;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
         setupSearchViewListeners();
 
         setupTabLayout();
+
+        mViewModel.getSelectedCharacterObservable().observe(this, new Observer<CharacterEntity>() {
+            @Override
+            public void onChanged(@Nullable CharacterEntity characterEntity) {
+                Intent startDetailsActivity = new Intent(getApplicationContext(), DetailsActivity.class);
+                startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(characterEntity));
+
+                startActivity(startDetailsActivity);
+            }
+        });
     }
 
     private void setupSearchViewListeners() {

@@ -16,6 +16,7 @@ public class MainViewModel extends AndroidViewModel {
     private LiveData<List<CharacterEntity>> charactersLiveData;
     private LiveData<List<CharacterEntity>> favoriteCharactersLiveData;
     private MutableLiveData<Boolean> loadingFlagLiveData;
+    private MutableLiveData<CharacterEntity> selectedCharacterLiveData;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -45,6 +46,14 @@ public class MainViewModel extends AndroidViewModel {
         return loadingFlagLiveData;
     }
 
+    public LiveData<CharacterEntity> getSelectedCharacterObservable() {
+        if (selectedCharacterLiveData == null) {
+            selectedCharacterLiveData = new MutableLiveData<>();
+        }
+
+        return selectedCharacterLiveData;
+    }
+
     public void loadCharacters() {
         loadingFlagLiveData.setValue(true);
         Repository.getInstance(getApplication()).loadCharacters();
@@ -61,5 +70,9 @@ public class MainViewModel extends AndroidViewModel {
 
     public void hideLoading() {
         loadingFlagLiveData.setValue(false);
+    }
+
+    public void setSelectedCharacter(CharacterEntity selectedCharacter) {
+        selectedCharacterLiveData.setValue(selectedCharacter);
     }
 }

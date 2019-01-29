@@ -19,7 +19,7 @@ import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
 import java.util.List;
 
-public class CharacterFragment extends Fragment {
+public class CharacterFragment extends Fragment implements CharactersListAdapter.CardClickListener {
 
     CharactersListAdapter mCharactersListAdapter;
 
@@ -31,7 +31,7 @@ public class CharacterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_characters, container, false);
 
-        mCharactersListAdapter = new CharactersListAdapter();
+        mCharactersListAdapter = new CharactersListAdapter(this);
         mBinding.rvCharactersList.setAdapter(mCharactersListAdapter);
 
         return mBinding.getRoot();
@@ -62,5 +62,10 @@ public class CharacterFragment extends Fragment {
         });
 
         mViewModel.loadCharacters();
+    }
+
+    @Override
+    public void onItemClick(CharacterEntity selectedItem) {
+        mViewModel.setSelectedCharacter(selectedItem);
     }
 }

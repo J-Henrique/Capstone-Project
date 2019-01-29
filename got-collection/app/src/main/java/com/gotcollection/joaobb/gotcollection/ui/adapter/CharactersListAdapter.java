@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.gotcollection.joaobb.gotcollection.R;
@@ -18,6 +19,16 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
 
     private List<CharacterEntity> mDataset;
     private Context mContext;
+
+    private CardClickListener onCardClick;
+
+    public interface CardClickListener {
+        void onItemClick(CharacterEntity selectedItem);
+    }
+
+    public CharactersListAdapter(CardClickListener onItemClick) {
+        onCardClick = onItemClick;
+    }
 
     @NonNull
     @Override
@@ -35,7 +46,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
 
     @Override
     public void onBindViewHolder(@NonNull CharactersViewHolder charactersViewHolder, int i) {
-        CharacterEntity character = mDataset.get(i);
+        final CharacterEntity character = mDataset.get(i);
 
         String imagePath = mContext.getResources().getString(R.string.gotMiscUrl) + character.getImageLink();
 
@@ -44,6 +55,13 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
             .load(imagePath)
             .fit()
             .into(charactersViewHolder.mBinding.ivPicture);
+
+        charactersViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCardClick.onItemClick(character);
+            }
+        });
 
         charactersViewHolder.bind(character);
     }

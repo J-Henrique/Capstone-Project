@@ -34,7 +34,7 @@ public class CharacterFragment extends Fragment implements CharactersListAdapter
 
         mCharactersListAdapter = new CharactersListAdapter(this);
         mBinding.rvCharactersList.setAdapter(mCharactersListAdapter);
-        mBinding.rvCharactersList.addItemDecoration(new EqualSpacingItemDecoration(16));
+        mBinding.rvCharactersList.addItemDecoration(new EqualSpacingItemDecoration(25));
 
         return mBinding.getRoot();
     }

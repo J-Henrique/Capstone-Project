@@ -24,6 +24,7 @@
             <ImageView
                 android:id="@+id/iv_picture"
                 tools:src="@drawable/ic_favorite"
+                android:scaleType="centerCrop"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 
@@ -56,6 +57,5 @@
             </LinearLayout>
 
         </LinearLayout>
-
     </android.support.design.card.MaterialCardView>
 </layout>

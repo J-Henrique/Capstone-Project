@@ -53,7 +53,6 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
         Picasso
             .get()
             .load(imagePath)
-            .fit()
             .into(charactersViewHolder.mBinding.ivPicture);
 
         charactersViewHolder.itemView.setOnClickListener(new View.OnClickListener() {

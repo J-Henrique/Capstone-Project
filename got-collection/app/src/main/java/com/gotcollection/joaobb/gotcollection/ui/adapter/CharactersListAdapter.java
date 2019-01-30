@@ -56,7 +56,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
             .noFade()
             .placeholder(R.drawable.ic_people)
             .resize(80, 80)
-            .into(charactersViewHolder.mBinding.ivPicture);
+            .into(charactersViewHolder.mBinding.ivCirclePicture);
 
         charactersViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

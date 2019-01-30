@@ -1,5 +1,7 @@
 package com.gotcollection.joaobb.gotcollection.ui.activity;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -7,8 +9,10 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.view.View;
 
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityMainBinding;
@@ -39,13 +43,21 @@ public class MainActivity extends AppCompatActivity {
 
         setupTabLayout();
 
+        final Activity activity = this;
+
         mViewModel.getSelectedCharacterObservable().observe(this, new Observer<CharacterEntity>() {
             @Override
             public void onChanged(@Nullable CharacterEntity characterEntity) {
                 Intent startDetailsActivity = new Intent(getApplicationContext(), DetailsActivity.class);
                 startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(characterEntity));
 
-                startActivity(startDetailsActivity);
+                final View view = findViewById(R.id.iv_circle_picture);
+
+                Bundle options = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(activity, view, "picture")
+                        .toBundle();
+
+                startActivity(startDetailsActivity, options);
             }
         });
     }

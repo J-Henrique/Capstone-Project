@@ -20,11 +20,12 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <ImageView
+            
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_picture"
                 tools:src="@drawable/ic_favorite"
-                android:scaleType="centerCrop"
+                bind:civ_border_width="2dp"
+                bind:civ_border_color="@android:color/white"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 

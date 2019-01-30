@@ -33,7 +33,7 @@ public class DetailsActivity extends AppCompatActivity {
             Picasso
                 .get()
                 .load(imagePath)
-                .fit()
+                .noFade()
                 .into(mBinding.ivPicture);
         }
     }

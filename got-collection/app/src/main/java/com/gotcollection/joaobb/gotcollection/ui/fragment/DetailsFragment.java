@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.FragmentDetailsBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
-import com.gotcollection.joaobb.gotcollection.ui.util.ListViewHeight;
+import com.gotcollection.joaobb.gotcollection.ui.util.ListViewDynamicHeightUtils;
 
 import org.parceler.Parcels;
 
@@ -35,7 +35,7 @@ public class DetailsFragment extends Fragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getActivity(), R.layout.layout_row, character.getTitles());
         mBinding.lvTitles.setAdapter(arrayAdapter);
 
-        ListViewHeight.setListViewHeightBasedOnChildren(mBinding.lvTitles);
+        ListViewDynamicHeightUtils.setListViewHeightBasedOnChildren(mBinding.lvTitles);
 
         return mBinding.getRoot();
     }

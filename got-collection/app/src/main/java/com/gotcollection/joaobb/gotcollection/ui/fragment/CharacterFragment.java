@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gotcollection.joaobb.gotcollection.ui.util.EqualSpacingItemDecoration;
+import com.gotcollection.joaobb.gotcollection.ui.util.EqualSpacingItemDecorationUtils;
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.FragmentCharactersBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
@@ -35,7 +35,7 @@ public class CharacterFragment extends Fragment implements CharactersListAdapter
 
         mCharactersListAdapter = new CharactersListAdapter(this);
         mBinding.rvCharactersList.setAdapter(mCharactersListAdapter);
-        mBinding.rvCharactersList.addItemDecoration(new EqualSpacingItemDecoration(25));
+        mBinding.rvCharactersList.addItemDecoration(new EqualSpacingItemDecorationUtils(25));
 
         return mBinding.getRoot();
     }

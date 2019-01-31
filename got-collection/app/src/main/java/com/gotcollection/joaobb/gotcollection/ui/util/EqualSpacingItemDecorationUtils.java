@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class EqualSpacingItemDecoration extends RecyclerView.ItemDecoration {
+public class EqualSpacingItemDecorationUtils extends RecyclerView.ItemDecoration {
     private final int spacing;
     private int displayMode;
 
@@ -13,11 +13,11 @@ public class EqualSpacingItemDecoration extends RecyclerView.ItemDecoration {
     public static final int VERTICAL = 1;
     public static final int GRID = 2;
 
-    public EqualSpacingItemDecoration(int spacing) {
+    public EqualSpacingItemDecorationUtils(int spacing) {
         this(spacing, -1);
     }
 
-    public EqualSpacingItemDecoration(int spacing, int displayMode) {
+    public EqualSpacingItemDecorationUtils(int spacing, int displayMode) {
         this.spacing = spacing;
         this.displayMode = displayMode;
     }

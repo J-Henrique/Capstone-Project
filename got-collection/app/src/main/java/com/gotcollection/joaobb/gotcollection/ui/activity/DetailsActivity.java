@@ -14,6 +14,7 @@ import org.parceler.Parcels;
 public class DetailsActivity extends AppCompatActivity {
 
     public static final String EXTRA_SELECTED_CHARACTER = "extra_selected_character";
+    public static final String TRANSITION_PICTURE = "transition_picture";
 
     ActivityDetailsBinding mBinding;
 

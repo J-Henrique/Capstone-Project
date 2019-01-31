@@ -3,6 +3,7 @@ package com.gotcollection.joaobb.gotcollection.ui.adapter;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
     private CardClickListener onCardClick;
 
     public interface CardClickListener {
-        void onItemClick(CharacterEntity selectedItem);
+        void onItemClick(Pair<CharacterEntity, View> characterEntityViewPair);
     }
 
     public CharactersListAdapter(CardClickListener onItemClick) {
@@ -61,7 +62,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
         charactersViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCardClick.onItemClick(character);
+                onCardClick.onItemClick(new Pair<>(character, v));
             }
         });
 

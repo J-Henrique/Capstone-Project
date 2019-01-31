@@ -6,10 +6,12 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.View;
@@ -45,20 +47,25 @@ public class MainActivity extends AppCompatActivity {
 
         final Activity activity = this;
 
-        mViewModel.getSelectedCharacterObservable().observe(this, new Observer<CharacterEntity>() {
+        mViewModel.getSelectedCharacterObservable().observe(this, new Observer<Pair<CharacterEntity, View>>() {
             @Override
-            public void onChanged(@Nullable CharacterEntity characterEntity) {
-                Intent startDetailsActivity = new Intent(getApplicationContext(), DetailsActivity.class);
-                startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(characterEntity));
+            public void onChanged(@Nullable Pair<CharacterEntity, View> characterEntityViewPair) {
+                    Intent startDetailsActivity = new Intent(getApplicationContext(), DetailsActivity.class);
+                    startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(characterEntityViewPair.first));
 
-                final View view = findViewById(R.id.iv_circle_picture);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // View of the card clicked
+                        final View view = characterEntityViewPair.second;
 
-                Bundle options = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(activity, view, "picture")
-                        .toBundle();
+                        Bundle options = ActivityOptionsCompat
+                                .makeSceneTransitionAnimation(activity, view.findViewById(R.id.iv_circle_picture), DetailsActivity.TRANSITION_PICTURE)
+                                .toBundle();
 
-                startActivity(startDetailsActivity, options);
-            }
+                        startActivity(startDetailsActivity, options);
+                    } else {
+                        startActivity(startDetailsActivity);
+                    }
+                }
         });
     }
 

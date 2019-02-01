@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{character.house}"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{character.culture}"
@@ -86,9 +86,8 @@
             android:visibility="@{TextUtils.isEmpty(character.titles[0]) ? View.GONE : View.VISIBLE}"
             android:orientation="horizontal"
             android:layout_marginBottom="8dp"
-            android:scrollbars="none"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:src="@drawable/ic_people"
@@ -98,7 +97,6 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:paddingLeft="16dp"
-                android:scrollbars="none"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -109,6 +107,39 @@
 
                 <ListView
                     android:id="@+id/lv_titles"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/layout_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="@{TextUtils.isEmpty(character.books[0]) ? View.GONE : View.VISIBLE}"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ListView
+                    android:id="@+id/lv_books"
                     android:scrollbars="none"
                     tools:listitem="@layout/layout_row"
                     android:layout_width="wrap_content"

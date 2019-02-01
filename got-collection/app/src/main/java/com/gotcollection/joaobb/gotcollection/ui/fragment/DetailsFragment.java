@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.FragmentDetailsBinding;
@@ -29,14 +30,20 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false);
 
+        assert getArguments() != null;
         character = Parcels.unwrap(getArguments().getParcelable(ARGS_CHARACTER));
         mBinding.setCharacter(character);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getActivity(), R.layout.layout_row, character.getTitles());
-        mBinding.lvTitles.setAdapter(arrayAdapter);
-
-        ListViewDynamicHeightUtils.setListViewHeightBasedOnChildren(mBinding.lvTitles);
+        setupDynamicListView(mBinding.lvTitles, character.getTitles());
+        setupDynamicListView(mBinding.lvBooks, character.getBooks());
 
         return mBinding.getRoot();
+    }
+
+    private void setupDynamicListView(ListView listView, String[] objectsArray) {
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.layout_row, objectsArray);
+        listView.setAdapter(arrayAdapter);
+
+        ListViewDynamicHeightUtils.setListViewHeightBasedOnChildren(listView);
     }
 }

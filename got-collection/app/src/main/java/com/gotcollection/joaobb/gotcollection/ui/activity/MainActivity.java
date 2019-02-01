@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setText(R.string.tab_item_characters);
 
         // Favorite tab
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_favorite);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_filled_fav);
         tabLayout.getTabAt(1).setText(R.string.tab_item_favorites);
     }
 }

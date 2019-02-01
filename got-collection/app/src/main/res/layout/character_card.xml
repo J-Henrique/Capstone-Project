@@ -24,9 +24,9 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:transitionName="transition_picture"
                 android:id="@+id/iv_circle_picture"
-                tools:src="@drawable/ic_favorite"
+                tools:src="@drawable/ic_picture"
                 bind:civ_border_width="2dp"
-                bind:civ_border_color="@android:color/white"
+                bind:civ_border_color="@android:color/black"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 

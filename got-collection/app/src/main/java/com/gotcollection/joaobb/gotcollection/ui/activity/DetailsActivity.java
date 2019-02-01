@@ -44,6 +44,7 @@ public class DetailsActivity extends AppCompatActivity {
         Picasso
             .get()
             .load(imagePath)
+            .placeholder(R.drawable.ic_picture)
             .noFade()
             .into(mBinding.ivPicture);
     }

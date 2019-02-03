@@ -11,7 +11,7 @@
 
     <android.support.design.card.MaterialCardView
         bind:cardCornerRadius="8dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/icons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -25,7 +25,6 @@
                 android:transitionName="transition_picture"
                 android:id="@+id/iv_circle_picture"
                 tools:src="@drawable/ic_picture"
-                bind:civ_border_width="1dp"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 
@@ -39,12 +38,14 @@
                     tools:text="Daenerys Targaryen"
                     android:text="@{character.name}"
                     android:textSize="24sp"
+                    android:textColor="@color/primary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     tools:text="House Targaryen"
                     android:text="@{character.house}"
+                    android:textColor="@color/secondary_text"
                     android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -52,6 +53,7 @@
                 <TextView
                     tools:text="Valyrian"
                     android:text="@{character.culture}"
+                    android:textColor="@color/secondary_text"
                     android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

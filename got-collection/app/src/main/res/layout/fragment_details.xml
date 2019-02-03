@@ -12,13 +12,14 @@
     </data>
 
     <LinearLayout
+        android:backgroundTint="@color/primary_light"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:visibility="@{TextUtils.isEmpty(character.house) ? View.GONE : View.VISIBLE}"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -36,11 +37,13 @@
 
                 <TextView
                     android:text="House"
+                    android:textColor="@color/primary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:textSize="24sp"
+                    android:textColor="@color/secondary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{character.house}"
@@ -52,7 +55,7 @@
         <LinearLayout
             android:visibility="@{TextUtils.isEmpty(character.culture) ? View.GONE : View.VISIBLE}"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -69,11 +72,13 @@
 
                 <TextView
                     android:text="Culture"
+                    android:textColor="@color/primary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:textSize="24sp"
+                    android:textColor="@color/secondary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{character.culture}"
@@ -85,7 +90,7 @@
         <LinearLayout
             android:visibility="@{TextUtils.isEmpty(character.titles[0]) ? View.GONE : View.VISIBLE}"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -102,6 +107,7 @@
 
                 <TextView
                     android:text="Title"
+                    android:textColor="@color/primary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -118,7 +124,7 @@
         <LinearLayout
             android:visibility="@{TextUtils.isEmpty(character.books[0]) ? View.GONE : View.VISIBLE}"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -135,6 +141,7 @@
 
                 <TextView
                     android:text="Books"
+                    android:textColor="@color/primary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

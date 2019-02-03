@@ -9,6 +9,7 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
+            android:background="@color/primary_light"
             tools:listitem="@layout/character_card"
             android:id="@+id/rv_characters_list"
             android:layout_width="match_parent"
@@ -18,7 +19,7 @@
         <FrameLayout
             tools:visibility="gone"
             android:id="@+id/pb_loading"
-            android:background="#FFFFFF"
+            android:background="@color/primary_light"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

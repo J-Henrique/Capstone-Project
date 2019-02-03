@@ -24,7 +24,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:transitionName="transition_picture"
                 android:id="@+id/iv_circle_picture"
-                tools:src="@drawable/ic_picture"
+                tools:src="@drawable/ic_picture_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 

@@ -33,7 +33,7 @@
                 <ImageView
                     android:transitionName="transition_picture"
                     android:id="@+id/iv_picture"
-                    tools:src="@drawable/ic_picture"
+                    tools:src="@drawable/ic_picture_expanded"
                     app:layout_collapseMode="parallax"
                     android:scaleType="fitXY"
                     android:layout_width="match_parent"

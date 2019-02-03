@@ -55,7 +55,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
             .get()
             .load(imagePath)
             .noFade()
-            .placeholder(R.drawable.ic_picture)
+            .placeholder(R.drawable.ic_picture_icon)
             .resize(80, 80)
             .into(charactersViewHolder.mBinding.ivCirclePicture);
 

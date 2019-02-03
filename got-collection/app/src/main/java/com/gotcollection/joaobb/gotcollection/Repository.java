@@ -29,6 +29,8 @@ public class Repository {
 
     private CharacterService characterService;
 
+    private List<CharacterEntity> cachedCharacters;
+
     final MutableLiveData<List<CharacterEntity>> charactersObservable = new MutableLiveData<>();
 
     private Repository(final Context context) {
@@ -69,25 +71,33 @@ public class Repository {
     }
 
     public void loadCharacters() {
-        characterService.getCharacters().enqueue(new Callback<CharacterEntity[]>() {
-            @Override
-            public void onResponse(Call<CharacterEntity[]> call, Response<CharacterEntity[]> response) {
-                Log.d(TAG, "onResponse() returned: " + Arrays.asList(response.body()).size());
+        if (cachedCharacters == null) {
+            characterService.getCharacters().enqueue(new Callback<CharacterEntity[]>() {
+                @Override
+                public void onResponse(Call<CharacterEntity[]> call, Response<CharacterEntity[]> response) {
+                    Log.d(TAG, "onResponse() returned: " + Arrays.asList(response.body()).size());
 
-                /*
-                    ATTENTION:
-                    Due large API mass, the characters being returned when no filter is applied is limited up to 50
-                */
-                charactersObservable.setValue(Arrays.asList(response.body()).subList(0, 50));
-            }
+                    /*
+                        ATTENTION:
+                        Due large API mass, the characters being returned when no filter is applied is limited up to 50
+                    */
 
-            @Override
-            public void onFailure(Call<CharacterEntity[]> call, Throwable t) {
-                Log.e(TAG, "onFailure: t", t);
+                    // cache characters to prevent multiple API calls
+                    cachedCharacters = Arrays.asList(response.body()).subList(0, 50);
 
-                charactersObservable.setValue(null);
-            }
-        });
+                    charactersObservable.setValue(cachedCharacters);
+                }
+
+                @Override
+                public void onFailure(Call<CharacterEntity[]> call, Throwable t) {
+                    Log.e(TAG, "onFailure: t", t);
+
+                    charactersObservable.setValue(null);
+                }
+            });
+        } else {
+            charactersObservable.setValue(cachedCharacters);
+        }
     }
 
     public void loadCharacterByName(@NonNull String characterName) {

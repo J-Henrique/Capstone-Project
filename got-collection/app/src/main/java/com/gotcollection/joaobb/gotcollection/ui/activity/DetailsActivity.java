@@ -1,17 +1,17 @@
 package com.gotcollection.joaobb.gotcollection.ui.activity;
 
 import android.databinding.DataBindingUtil;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.gotcollection.joaobb.gotcollection.R;
-import com.gotcollection.joaobb.gotcollection.Repository;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityDetailsBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
+import com.gotcollection.joaobb.gotcollection.ui.async.DeleteCharacterTask;
+import com.gotcollection.joaobb.gotcollection.ui.async.InsertCharacterTask;
+import com.gotcollection.joaobb.gotcollection.ui.async.QueryCharacterFavoriteTask;
 import com.gotcollection.joaobb.gotcollection.ui.fragment.DetailsFragment;
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +22,8 @@ public class DetailsActivity extends AppCompatActivity {
     public static final String EXTRA_SELECTED_CHARACTER = "extra_selected_character";
     public static final String TRANSITION_PICTURE = "transition_picture";
 
-    ActivityDetailsBinding mBinding;
+    public ActivityDetailsBinding mBinding;
+
     CharacterEntity mSelectedCharacter;
 
     @Override
@@ -71,52 +72,13 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void fabClick(View view) {
         if (mBinding.getIsFavorite()) {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    Repository.getInstance(DetailsActivity.this).deleteCharacter(mSelectedCharacter);
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    Toast.makeText(DetailsActivity.this, getResources().getString(R.string.favorite_message_remove), Toast.LENGTH_LONG).show();
-
-                    mBinding.setIsFavorite(false);
-                }
-            }.execute();
+            new DeleteCharacterTask(this).execute(mSelectedCharacter);
         } else {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    Repository.getInstance(DetailsActivity.this).insertCharacter(mSelectedCharacter);
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    Toast.makeText(DetailsActivity.this, getResources().getString(R.string.favorite_message_add), Toast.LENGTH_LONG).show();
-
-                    mBinding.setIsFavorite(true);
-                }
-            }.execute();
+            new InsertCharacterTask(this).execute(mSelectedCharacter);
         }
     }
 
     private void checkCharacterIsFavorite() {
-        new AsyncTask<String, Void, Boolean>() {
-            @Override
-            protected Boolean doInBackground(String... strings) {
-                return Repository.getInstance(DetailsActivity.this).isFavorite(strings[0]);
-            }
-
-            @Override
-            protected void onPostExecute(Boolean aBoolean) {
-                super.onPostExecute(aBoolean);
-                mBinding.setIsFavorite(aBoolean);
-            }
-        }.execute(mSelectedCharacter.getId());
+        new QueryCharacterFavoriteTask(this).execute(mSelectedCharacter.getId());
     }
 }

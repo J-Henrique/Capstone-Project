@@ -41,7 +41,7 @@ public class DetailsFragment extends Fragment {
     }
 
     private void setupDynamicListView(ListView listView, String[] objectsArray) {
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.layout_row, objectsArray);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_row, objectsArray);
         listView.setAdapter(arrayAdapter);
 
         ListViewDynamicHeightUtils.setListViewHeightBasedOnChildren(listView);

@@ -1,11 +1,15 @@
 package com.gotcollection.joaobb.gotcollection.ui.activity;
 
 import android.databinding.DataBindingUtil;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
 
 import com.gotcollection.joaobb.gotcollection.R;
+import com.gotcollection.joaobb.gotcollection.Repository;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityDetailsBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 import com.gotcollection.joaobb.gotcollection.ui.fragment.DetailsFragment;
@@ -19,6 +23,7 @@ public class DetailsActivity extends AppCompatActivity {
     public static final String TRANSITION_PICTURE = "transition_picture";
 
     ActivityDetailsBinding mBinding;
+    CharacterEntity mSelectedCharacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +33,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         if (getIntent().hasExtra(EXTRA_SELECTED_CHARACTER)) {
             Parcelable wrappedCharacter = getIntent().getParcelableExtra(EXTRA_SELECTED_CHARACTER);
-            CharacterEntity selectedItem = Parcels.unwrap(wrappedCharacter);
+            mSelectedCharacter = Parcels.unwrap(wrappedCharacter);
 
-            mBinding.setCharacter(selectedItem);
+            mBinding.setCharacter(mSelectedCharacter);
 
-            setupPicture(selectedItem);
+            setupPicture(mSelectedCharacter);
 
             setupDetailsFragment(wrappedCharacter);
         }
@@ -60,5 +65,21 @@ public class DetailsActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.fr_details_container, detailsFragment)
                 .commit();
+    }
+
+    public void fabClick(View view) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Repository.getInstance(DetailsActivity.this).insertCharacter(mSelectedCharacter);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Toast.makeText(DetailsActivity.this, getResources().getString(R.string.favorite_message), Toast.LENGTH_LONG).show();
+            }
+        }.execute();
     }
 }

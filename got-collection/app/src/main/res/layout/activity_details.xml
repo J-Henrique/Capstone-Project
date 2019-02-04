@@ -78,6 +78,7 @@
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|right"
             android:src="@drawable/ic_empty_fav"
+            android:onClick="fabClick"
             android:layout_marginRight="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

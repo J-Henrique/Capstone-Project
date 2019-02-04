@@ -32,9 +32,9 @@ public class MainViewModel extends AndroidViewModel {
         return charactersLiveData;
     }
 
-    public LiveData<List<CharacterEntity>> loadFavoriteCharacters() {
+    public LiveData<List<CharacterEntity>> getFavoritesObservable() {
         if (favoriteCharactersLiveData == null) {
-            favoriteCharactersLiveData = Repository.getInstance(getApplication()).getCharactersObservable();
+            favoriteCharactersLiveData = Repository.getInstance(getApplication()).loadFavoriteCharacters();
         }
 
         return favoriteCharactersLiveData;
@@ -64,10 +64,6 @@ public class MainViewModel extends AndroidViewModel {
     public void loadCharacterByName(@NonNull String characterName) {
         loadingFlagLiveData.setValue(true);
         Repository.getInstance(getApplication()).loadCharacterByName(characterName);
-    }
-
-    public void addToFavorites(CharacterEntity character) {
-        Repository.getInstance(getApplication()).insertCharacter(character);
     }
 
     public void hideLoading() {

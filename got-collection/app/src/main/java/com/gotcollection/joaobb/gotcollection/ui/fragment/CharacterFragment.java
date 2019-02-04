@@ -34,8 +34,8 @@ public class CharacterFragment extends Fragment implements CharactersListAdapter
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_characters, container, false);
 
         mCharactersListAdapter = new CharactersListAdapter(this);
-        mBinding.rvCharactersList.setAdapter(mCharactersListAdapter);
-        mBinding.rvCharactersList.addItemDecoration(new EqualSpacingItemDecorationUtils(25));
+        mBinding.charactersList.rvCharactersList.setAdapter(mCharactersListAdapter);
+        mBinding.charactersList.rvCharactersList.addItemDecoration(new EqualSpacingItemDecorationUtils(25));
 
         return mBinding.getRoot();
     }
@@ -49,9 +49,9 @@ public class CharacterFragment extends Fragment implements CharactersListAdapter
             @Override
             public void onChanged(@Nullable Boolean isLoading) {
                 if (isLoading) {
-                    mBinding.pbLoading.setVisibility(View.VISIBLE);
+                    mBinding.charactersList.pbLoading.setVisibility(View.VISIBLE);
                 } else {
-                    mBinding.pbLoading.setVisibility(View.GONE);
+                    mBinding.charactersList.pbLoading.setVisibility(View.GONE);
                 }
             }
         });

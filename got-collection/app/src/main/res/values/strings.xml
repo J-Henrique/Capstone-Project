@@ -7,5 +7,6 @@
 
     <string name="action_search">Search</string>
 
-    <string name="favorite_message">Added to favorites.</string>
+    <string name="favorite_message_add">Added to favorites.</string>
+    <string name="favorite_message_remove">Removed from favorites.</string>
 </resources>

@@ -69,6 +69,6 @@ public class FavoriteFragment extends Fragment implements CharactersListAdapter.
 
     @Override
     public void onItemClick(Pair<CharacterEntity, View> characterEntityViewPair) {
-
+        mViewModel.setSelectedCharacter(characterEntityViewPair);
     }
 }

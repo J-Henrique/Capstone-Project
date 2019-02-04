@@ -66,6 +66,14 @@ public class Repository {
         appDatabase.characterDao().insertCharacter(character);
     }
 
+    public void deleteCharacter(CharacterEntity character) {
+        appDatabase.characterDao().deleteCharacter(character);
+    }
+
+    public boolean isFavorite(String characterId) {
+        return appDatabase.characterDao().isFavorite(characterId);
+    }
+
     public LiveData<List<CharacterEntity>> getCharactersObservable() {
         return charactersObservable;
     }

@@ -40,6 +40,8 @@ public class DetailsActivity extends AppCompatActivity {
             setupPicture(mSelectedCharacter);
 
             setupDetailsFragment(wrappedCharacter);
+
+            checkCharacterIsFavorite();
         }
     }
 
@@ -68,18 +70,53 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void fabClick(View view) {
-        new AsyncTask<Void, Void, Void>() {
+        if (mBinding.getIsFavorite()) {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    Repository.getInstance(DetailsActivity.this).deleteCharacter(mSelectedCharacter);
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    Toast.makeText(DetailsActivity.this, getResources().getString(R.string.favorite_message_remove), Toast.LENGTH_LONG).show();
+
+                    mBinding.setIsFavorite(false);
+                }
+            }.execute();
+        } else {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    Repository.getInstance(DetailsActivity.this).insertCharacter(mSelectedCharacter);
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    Toast.makeText(DetailsActivity.this, getResources().getString(R.string.favorite_message_add), Toast.LENGTH_LONG).show();
+
+                    mBinding.setIsFavorite(true);
+                }
+            }.execute();
+        }
+    }
+
+    private void checkCharacterIsFavorite() {
+        new AsyncTask<String, Void, Boolean>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                Repository.getInstance(DetailsActivity.this).insertCharacter(mSelectedCharacter);
-                return null;
+            protected Boolean doInBackground(String... strings) {
+                return Repository.getInstance(DetailsActivity.this).isFavorite(strings[0]);
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                Toast.makeText(DetailsActivity.this, getResources().getString(R.string.favorite_message), Toast.LENGTH_LONG).show();
+            protected void onPostExecute(Boolean aBoolean) {
+                super.onPostExecute(aBoolean);
+                mBinding.setIsFavorite(aBoolean);
             }
-        }.execute();
+        }.execute(mSelectedCharacter.getId());
     }
 }

@@ -78,6 +78,10 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    public void backClick(View view) {
+        onBackPressed();
+    }
+
     private void checkCharacterIsFavorite() {
         new QueryCharacterFavoriteTask(this).execute(mSelectedCharacter.getId());
     }

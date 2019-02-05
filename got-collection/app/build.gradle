@@ -19,6 +19,16 @@ android {
     dataBinding {
         enabled true
     }
+    productFlavors {
+        free {
+            applicationIdSuffix ".free"
+        }
+
+        paid {
+            applicationIdSuffix ".paid"
+        }
+    }
+    flavorDimensions "default"
 }
 
 dependencies {

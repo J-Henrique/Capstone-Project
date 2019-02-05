@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/ic_crown"
+                    android:src="@drawable/ic_crown_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

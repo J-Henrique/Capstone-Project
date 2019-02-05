@@ -51,6 +51,7 @@ dependencies {
     // Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    // Firebase
     implementation 'com.google.firebase:firebase-core:16.0.1'
 
     testImplementation 'junit:junit:4.12'

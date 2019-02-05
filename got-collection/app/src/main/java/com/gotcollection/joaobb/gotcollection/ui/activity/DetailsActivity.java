@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityDetailsBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
@@ -26,9 +27,13 @@ public class DetailsActivity extends AppCompatActivity {
 
     CharacterEntity mSelectedCharacter;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
 
@@ -75,7 +80,16 @@ public class DetailsActivity extends AppCompatActivity {
             new DeleteCharacterTask(this).execute(mSelectedCharacter);
         } else {
             new InsertCharacterTask(this).execute(mSelectedCharacter);
+
+            logFavoriteCharacter();
         }
+    }
+
+    private void logFavoriteCharacter() {
+        Bundle params = new Bundle();
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, mSelectedCharacter.getId());
+        params.putString(FirebaseAnalytics.Param.ITEM_NAME, mSelectedCharacter.getName());
+        mFirebaseAnalytics.logEvent("character_marked_favorite", params);
     }
 
     public void backClick(View view) {

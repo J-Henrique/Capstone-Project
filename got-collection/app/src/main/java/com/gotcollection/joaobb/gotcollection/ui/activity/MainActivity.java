@@ -1,13 +1,13 @@
 package com.gotcollection.joaobb.gotcollection.ui.activity;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityMainBinding;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
@@ -29,9 +30,14 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mBinding;
     MainViewModel mViewModel;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
@@ -53,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent startDetailsActivity = new Intent(getApplicationContext(), DetailsActivity.class);
                     startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(characterEntityViewPair.first));
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                logSelectedCharacter(characterEntityViewPair);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         // View of the card clicked
                         final View view = characterEntityViewPair.second;
 
@@ -67,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         });
+    }
+
+    private void logSelectedCharacter(@NonNull Pair<CharacterEntity, View> characterEntityViewPair) {
+        Bundle params = new Bundle();
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, characterEntityViewPair.first.getId());
+        params.putString(FirebaseAnalytics.Param.ITEM_NAME, characterEntityViewPair.first.getName());
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 
     private void setupSearchViewListeners() {

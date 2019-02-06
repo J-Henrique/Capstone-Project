@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:200789066430:android:cc95b5c5653795c5",
         "android_client_info": {
-          "package_name": "com.gotcollection.joaobb.gotcollection"
+          "package_name": "com.gotcollection.joaobb.gotcollection.paid"
         }
       },
       "oauth_client": [

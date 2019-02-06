@@ -6,8 +6,6 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.gotcollection.joaobb.gotcollection.R;
 import com.gotcollection.joaobb.gotcollection.databinding.ActivityDetailsBinding;
@@ -38,10 +36,6 @@ public class DetailsActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        MobileAds.initialize(this);
-        mBinding.adView.loadAd(new AdRequest.Builder().build());
-
 
         if (getIntent().hasExtra(EXTRA_SELECTED_CHARACTER)) {
             Parcelable wrappedCharacter = getIntent().getParcelableExtra(EXTRA_SELECTED_CHARACTER);

@@ -15,7 +15,10 @@ import java.util.List;
 public interface CharacterDao {
 
     @Query("SELECT * FROM characters")
-    LiveData<List<CharacterEntity>> loadCharacters();
+    LiveData<List<CharacterEntity>> loadFavoritesLiveData();
+
+    @Query("SELECT * FROM characters")
+    List<CharacterEntity> loadFavorites();
 
     @Query("SELECT 1 FROM characters WHERE _id = :characterId")
     boolean isFavorite(String characterId);

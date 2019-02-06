@@ -58,8 +58,12 @@ public class Repository {
         return sRepositoryInstance;
     }
 
-    public LiveData<List<CharacterEntity>> loadFavoriteCharacters() {
-        return appDatabase.characterDao().loadCharacters();
+    public LiveData<List<CharacterEntity>> loadFavoritesLiveData() {
+        return appDatabase.characterDao().loadFavoritesLiveData();
+    }
+
+    public List<CharacterEntity> loadFavorites() {
+        return appDatabase.characterDao().loadFavorites();
     }
 
     public void insertCharacter(CharacterEntity character) {

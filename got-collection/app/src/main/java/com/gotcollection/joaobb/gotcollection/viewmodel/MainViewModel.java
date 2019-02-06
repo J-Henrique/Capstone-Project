@@ -34,7 +34,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<CharacterEntity>> getFavoritesObservable() {
         if (favoriteCharactersLiveData == null) {
-            favoriteCharactersLiveData = Repository.getInstance(getApplication()).loadFavoriteCharacters();
+            favoriteCharactersLiveData = Repository.getInstance(getApplication()).loadFavoritesLiveData();
         }
 
         return favoriteCharactersLiveData;

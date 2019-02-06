@@ -1,5 +1,8 @@
 package com.gotcollection.joaobb.gotcollection.ui.activity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -14,6 +17,7 @@ import com.gotcollection.joaobb.gotcollection.ui.async.DeleteCharacterTask;
 import com.gotcollection.joaobb.gotcollection.ui.async.InsertCharacterTask;
 import com.gotcollection.joaobb.gotcollection.ui.async.QueryCharacterFavoriteTask;
 import com.gotcollection.joaobb.gotcollection.ui.fragment.DetailsFragment;
+import com.gotcollection.joaobb.gotcollection.ui.widget.FavCharactersWidget;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -78,11 +82,27 @@ public class DetailsActivity extends AppCompatActivity {
     public void fabClick(View view) {
         if (mBinding.getIsFavorite()) {
             new DeleteCharacterTask(this).execute(mSelectedCharacter);
+
+            broadcastWidgetUpdate();
         } else {
             new InsertCharacterTask(this).execute(mSelectedCharacter);
 
             logFavoriteCharacter();
+
+            broadcastWidgetUpdate();
         }
+    }
+
+    private void broadcastWidgetUpdate() {
+        Intent updateWidget = new Intent(this, FavCharactersWidget.class);
+        updateWidget.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(
+                new ComponentName(getApplication(), FavCharactersWidget.class));
+
+        updateWidget.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+
+        sendBroadcast(updateWidget);
     }
 
     private void logFavoriteCharacter() {

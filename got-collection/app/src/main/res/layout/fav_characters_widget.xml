@@ -18,7 +18,8 @@
             android:layout_height="match_parent" />
 
         <TextView
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:fontFamily="serif"
             android:textStyle="bold"
             android:textColor="@color/primary_text"

@@ -84,7 +84,7 @@
             app:layout_anchorGravity="bottom|right"
             android:src="@{safeUnbox(isFavorite) ? @drawable/ic_filled_fav : @drawable/ic_empty_fav}"
             android:onClick="fabClick"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

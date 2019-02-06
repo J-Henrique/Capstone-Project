@@ -5,8 +5,11 @@
 
     <string name="tab_item_favorites">Favorites</string>
 
-    <string name="action_search">Search</string>
-
     <string name="favorite_message_add">Added to favorites.</string>
     <string name="favorite_message_remove">Removed from favorites.</string>
+
+    <string name="details_house">House</string>
+    <string name="details_culture">Culture</string>
+    <string name="details_title">Title</string>
+    <string name="details_books">Books</string>
 </resources>

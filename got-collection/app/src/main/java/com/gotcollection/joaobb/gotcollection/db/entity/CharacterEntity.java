@@ -12,15 +12,14 @@ public class CharacterEntity {
 
     @PrimaryKey
     @NonNull
-    private
     String _id;
 
-    private String name;
-    private String[] titles;
-    private String culture;
-    private String house;
-    private String[] books;
-    private String imageLink;
+    String name;
+    String[] titles;
+    String culture;
+    String house;
+    String[] books;
+    String imageLink;
 
     public String getId() {
         return _id;

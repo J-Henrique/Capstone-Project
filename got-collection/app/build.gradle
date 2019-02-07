@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword 'android'
-            storeFile file('/Users/joaobb/git/Android/capstone/got-collection/keystore')
+            storeFile file("$rootDir/keystore")
             storePassword 'android'
         }
     }

@@ -27,11 +27,11 @@ public class Repository {
     private final AppDatabase appDatabase;
     private static Repository sRepositoryInstance;
 
-    private CharacterService characterService;
+    private final CharacterService characterService;
 
     private List<CharacterEntity> cachedCharacters;
 
-    final MutableLiveData<List<CharacterEntity>> charactersObservable = new MutableLiveData<>();
+    private final MutableLiveData<List<CharacterEntity>> charactersObservable = new MutableLiveData<>();
 
     private Repository(final Context context) {
 
@@ -86,7 +86,7 @@ public class Repository {
         if (cachedCharacters == null) {
             characterService.getCharacters().enqueue(new Callback<CharacterEntity[]>() {
                 @Override
-                public void onResponse(Call<CharacterEntity[]> call, Response<CharacterEntity[]> response) {
+                public void onResponse(@NonNull Call<CharacterEntity[]> call, @NonNull Response<CharacterEntity[]> response) {
                     Log.d(TAG, "onResponse() returned: " + Arrays.asList(response.body()).size());
 
                     /*
@@ -101,7 +101,7 @@ public class Repository {
                 }
 
                 @Override
-                public void onFailure(Call<CharacterEntity[]> call, Throwable t) {
+                public void onFailure(@NonNull Call<CharacterEntity[]> call, @NonNull Throwable t) {
                     Log.e(TAG, "onFailure: t", t);
 
                     charactersObservable.setValue(null);
@@ -115,7 +115,7 @@ public class Repository {
     public void loadCharacterByName(@NonNull String characterName) {
         characterService.getCharacterByName(characterName).enqueue(new Callback<CharacterResultModel>() {
             @Override
-            public void onResponse(Call<CharacterResultModel> call, Response<CharacterResultModel> response) {
+            public void onResponse(@NonNull Call<CharacterResultModel> call, @NonNull Response<CharacterResultModel> response) {
                 Log.d(TAG, "onResponse: " + response.body());
 
                 if (response.body() != null) {
@@ -126,7 +126,7 @@ public class Repository {
             }
 
             @Override
-            public void onFailure(Call<CharacterResultModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<CharacterResultModel> call, @NonNull Throwable t) {
                 Log.e(TAG, "onFailure: t", t);
 
                 charactersObservable.setValue(null);

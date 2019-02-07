@@ -12,6 +12,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.Objects;
+
 public class AdFragment extends Fragment {
 
     @Nullable
@@ -21,10 +23,10 @@ public class AdFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MobileAds.initialize(getActivity().getApplicationContext());
+        MobileAds.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
         AdView adView = view.findViewById(R.id.adView);
         adView.loadAd(new AdRequest.Builder().build());
     }

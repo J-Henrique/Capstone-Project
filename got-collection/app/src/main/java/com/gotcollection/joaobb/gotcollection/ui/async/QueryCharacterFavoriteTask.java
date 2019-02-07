@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 
 public class QueryCharacterFavoriteTask extends AsyncTask<String, Void, Boolean> {
 
-    private WeakReference<Context> weakContext;
+    private final WeakReference<Context> weakContext;
 
     public QueryCharacterFavoriteTask(Context context) {
         weakContext = new WeakReference<>(context);

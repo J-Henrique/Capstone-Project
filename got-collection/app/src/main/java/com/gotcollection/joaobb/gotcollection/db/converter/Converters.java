@@ -18,7 +18,6 @@ public class Converters {
     @TypeConverter
     public static String fromArray(String[] list) {
         Gson gson = new Gson();
-        String json = gson.toJson(list);
-        return json;
+        return gson.toJson(list);
     }
 }

@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference;
 
 public class DeleteCharacterTask extends AsyncTask<CharacterEntity, Void, Void> {
 
-    private WeakReference<Context> weakContext;
+    private final WeakReference<Context> weakContext;
 
     public DeleteCharacterTask(Context context) {
         weakContext = new WeakReference<>(context);

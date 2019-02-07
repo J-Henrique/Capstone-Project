@@ -10,7 +10,7 @@ import com.gotcollection.joaobb.gotcollection.ui.fragment.CharacterFragment;
 
 public class CharactersFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    Context mContext;
+    private final Context mContext;
 
     public CharactersFragmentPagerAdapter(Context context, FragmentManager fm) {
         super(fm);

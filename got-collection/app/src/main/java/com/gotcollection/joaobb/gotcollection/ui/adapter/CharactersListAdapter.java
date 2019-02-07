@@ -21,7 +21,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
     private List<CharacterEntity> mDataset;
     private Context mContext;
 
-    private CardClickListener onCardClick;
+    private final CardClickListener onCardClick;
 
     public interface CardClickListener {
         void onItemClick(Pair<CharacterEntity, View> characterEntityViewPair);
@@ -81,14 +81,14 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
 
     public class CharactersViewHolder extends RecyclerView.ViewHolder {
 
-        private CharacterCardBinding mBinding;
+        private final CharacterCardBinding mBinding;
 
-        public CharactersViewHolder(@NonNull CharacterCardBinding binding) {
+        CharactersViewHolder(@NonNull CharacterCardBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
         }
 
-        public void bind(CharacterEntity character) {
+        void bind(CharacterEntity character) {
             mBinding.setCharacter(character);
             mBinding.executePendingBindings();
         }

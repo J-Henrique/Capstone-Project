@@ -1,6 +1,7 @@
 package com.gotcollection.joaobb.gotcollection.ui.util;
 
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,21 +10,21 @@ public class EqualSpacingItemDecorationUtils extends RecyclerView.ItemDecoration
     private final int spacing;
     private int displayMode;
 
-    public static final int HORIZONTAL = 0;
-    public static final int VERTICAL = 1;
-    public static final int GRID = 2;
+    private static final int HORIZONTAL = 0;
+    private static final int VERTICAL = 1;
+    private static final int GRID = 2;
 
     public EqualSpacingItemDecorationUtils(int spacing) {
         this(spacing, -1);
     }
 
-    public EqualSpacingItemDecorationUtils(int spacing, int displayMode) {
+    private EqualSpacingItemDecorationUtils(int spacing, int displayMode) {
         this.spacing = spacing;
         this.displayMode = displayMode;
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         int position = parent.getChildViewHolder(view).getAdapterPosition();
         int itemCount = state.getItemCount();
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();

@@ -9,9 +9,9 @@ import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 
 import java.util.List;
 
-public class FavCharactersWidgetRemoteViewFactory implements FavCharactersWidgetService.RemoteViewsFactory{
+class FavCharactersWidgetRemoteViewFactory implements FavCharactersWidgetService.RemoteViewsFactory{
 
-    private Context mContext;
+    private final Context mContext;
     private List<CharacterEntity> mFavoritesList;
 
     public FavCharactersWidgetRemoteViewFactory(Context mContext) {

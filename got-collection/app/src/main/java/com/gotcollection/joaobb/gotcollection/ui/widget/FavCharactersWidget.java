@@ -15,8 +15,8 @@ import com.gotcollection.joaobb.gotcollection.ui.activity.MainActivity;
  */
 public class FavCharactersWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        int appWidgetId) {
 
         Intent startDetailsActivity = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, startDetailsActivity, PendingIntent.FLAG_UPDATE_CURRENT);

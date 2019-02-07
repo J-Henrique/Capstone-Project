@@ -6,7 +6,7 @@ import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 public class CharacterResultModel {
 
     @SerializedName("data")
-    private CharacterEntity characterResult;
+    private final CharacterEntity characterResult;
 
     public CharacterResultModel(CharacterEntity characterResult) {
         this.characterResult = characterResult;

@@ -20,13 +20,14 @@ import com.gotcollection.joaobb.gotcollection.ui.util.EqualSpacingItemDecoration
 import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FavoriteFragment extends Fragment implements CharactersListAdapter.CardClickListener {
 
-    CharactersListAdapter mFavoriteListAdapter;
+    private CharactersListAdapter mFavoriteListAdapter;
 
-    FragmentFavoriteBinding mBinding;
-    MainViewModel mViewModel;
+    private FragmentFavoriteBinding mBinding;
+    private MainViewModel mViewModel;
 
     @Nullable
     @Override
@@ -44,7 +45,7 @@ public class FavoriteFragment extends Fragment implements CharactersListAdapter.
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        mViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         mViewModel.getLoadingFlagObservable().observe(getActivity(), new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isLoading) {

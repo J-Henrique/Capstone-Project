@@ -25,10 +25,12 @@ import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
 import org.parceler.Parcels;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding mBinding;
-    MainViewModel mViewModel;
+    private ActivityMainBinding mBinding;
+    private MainViewModel mViewModel;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable Pair<CharacterEntity, View> characterEntityViewPair) {
                     Intent startDetailsActivity = new Intent(getApplicationContext(), DetailsActivity.class);
-                    startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(characterEntityViewPair.first));
+                    startDetailsActivity.putExtra(DetailsActivity.EXTRA_SELECTED_CHARACTER, Parcels.wrap(Objects.requireNonNull(characterEntityViewPair).first));
 
                 logSelectedCharacter(characterEntityViewPair);
 
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         final View view = characterEntityViewPair.second;
 
                         Bundle options = ActivityOptionsCompat
-                                .makeSceneTransitionAnimation(activity, view.findViewById(R.id.iv_circle_picture), DetailsActivity.TRANSITION_PICTURE)
+                                .makeSceneTransitionAnimation(activity, Objects.requireNonNull(view).findViewById(R.id.iv_circle_picture), DetailsActivity.TRANSITION_PICTURE)
                                 .toBundle();
 
                         startActivity(startDetailsActivity, options);
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void logSelectedCharacter(@NonNull Pair<CharacterEntity, View> characterEntityViewPair) {
         Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.ITEM_ID, characterEntityViewPair.first.getId());
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, Objects.requireNonNull(characterEntityViewPair.first).getId());
         params.putString(FirebaseAnalytics.Param.ITEM_NAME, characterEntityViewPair.first.getName());
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
@@ -115,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mBinding.viewPager);
 
         // Characters tab
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_people);
-        tabLayout.getTabAt(0).setText(R.string.tab_item_characters);
+        Objects.requireNonNull(tabLayout.getTabAt(0)).setIcon(R.drawable.ic_people);
+        Objects.requireNonNull(tabLayout.getTabAt(0)).setText(R.string.tab_item_characters);
 
         // Favorite tab
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_filled_fav);
-        tabLayout.getTabAt(1).setText(R.string.tab_item_favorites);
+        Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.ic_filled_fav);
+        Objects.requireNonNull(tabLayout.getTabAt(1)).setText(R.string.tab_item_favorites);
     }
 }

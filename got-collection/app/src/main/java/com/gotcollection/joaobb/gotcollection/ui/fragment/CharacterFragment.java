@@ -20,13 +20,14 @@ import com.gotcollection.joaobb.gotcollection.ui.adapter.CharactersListAdapter;
 import com.gotcollection.joaobb.gotcollection.viewmodel.MainViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CharacterFragment extends Fragment implements CharactersListAdapter.CardClickListener {
 
-    CharactersListAdapter mCharactersListAdapter;
+    private CharactersListAdapter mCharactersListAdapter;
 
-    FragmentCharactersBinding mBinding;
-    MainViewModel mViewModel;
+    private FragmentCharactersBinding mBinding;
+    private MainViewModel mViewModel;
 
     @Nullable
     @Override
@@ -44,11 +45,11 @@ public class CharacterFragment extends Fragment implements CharactersListAdapter
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        mViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         mViewModel.getLoadingFlagObservable().observe(getActivity(), new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isLoading) {
-                if (isLoading) {
+                if (isLoading != null && isLoading) {
                     mBinding.charactersList.pbLoading.setVisibility(View.VISIBLE);
                 } else {
                     mBinding.charactersList.pbLoading.setVisibility(View.GONE);

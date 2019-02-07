@@ -18,12 +18,14 @@ import com.gotcollection.joaobb.gotcollection.ui.util.ListViewDynamicHeightUtils
 
 import org.parceler.Parcels;
 
+import java.util.Objects;
+
 public class DetailsFragment extends Fragment {
 
     public static final String ARGS_CHARACTER = "args_character";
 
-    FragmentDetailsBinding mBinding;
-    CharacterEntity character;
+    private FragmentDetailsBinding mBinding;
+    private CharacterEntity character;
 
     @Nullable
     @Override
@@ -41,7 +43,7 @@ public class DetailsFragment extends Fragment {
     }
 
     private void setupDynamicListView(ListView listView, String[] objectsArray) {
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_row, objectsArray);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), R.layout.layout_row, objectsArray);
         listView.setAdapter(arrayAdapter);
 
         ListViewDynamicHeightUtils.setListViewHeightBasedOnChildren(listView);

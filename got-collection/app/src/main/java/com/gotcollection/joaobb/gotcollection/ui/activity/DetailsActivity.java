@@ -29,7 +29,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     public ActivityDetailsBinding mBinding;
 
-    CharacterEntity mSelectedCharacter;
+    private CharacterEntity mSelectedCharacter;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 

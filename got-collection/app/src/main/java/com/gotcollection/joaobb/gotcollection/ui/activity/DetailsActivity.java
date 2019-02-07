@@ -75,7 +75,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fr_details_container, detailsFragment)
+                .replace(R.id.fr_details_container, detailsFragment)
                 .commit();
     }
 

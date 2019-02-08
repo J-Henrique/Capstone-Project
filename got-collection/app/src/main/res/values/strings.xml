@@ -12,4 +12,8 @@
     <string name="details_culture">Culture</string>
     <string name="details_title">Title</string>
     <string name="details_books">Books</string>
+
+    <string name="accessibility_favorite_button">favorite</string>
+    <string name="accessibility_back_button">back</string>
+    <string name="accessibility_character_picture">character picture</string>
 </resources>

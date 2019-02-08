@@ -82,15 +82,13 @@ public class DetailsActivity extends AppCompatActivity {
     public void fabClick(View view) {
         if (mBinding.getIsFavorite()) {
             new DeleteCharacterTask(this).execute(mSelectedCharacter);
-
-            broadcastWidgetUpdate();
         } else {
             new InsertCharacterTask(this).execute(mSelectedCharacter);
 
             logFavoriteCharacter();
-
-            broadcastWidgetUpdate();
         }
+
+        broadcastWidgetUpdate();
     }
 
     private void broadcastWidgetUpdate() {

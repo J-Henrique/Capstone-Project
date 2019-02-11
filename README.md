@@ -15,6 +15,8 @@ A aplicação tem como principais recursos:
   * Permitir acessar rapidamente informações de personagens, ao clicar na listagem do
 widget
 
+Screenshots
+--------
 <table>
  <tr>
   

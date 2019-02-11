@@ -24,16 +24,24 @@ O diagrama abaixo demonstra a relação entre as classes e o método de acess
 
 Bibliotecas utilizadas
 ----------------------
-  * **Picasso**, para carregar imagens da web e caching
-  * **Material Design compatibility**, utilização de componentes padrões do Material Design
-  * **Retrofit**, consumo de APIs e gerenciamento de requisições
-  * **Room**, persistência de dados em banco de dados local
-  * **Parceler**, para serializar e desserializar objetos compartilhados entre as activities
-  * **Circle Image View**, criação de views de formato circular para conter a imagem do personagem
-  * **Gson**, converter objetos para formato Json antes de persistir em banco (TypeConverter)
+  * [Picasso][1], para carregar imagens da web e caching
+  * [Material Design Compatibility][2], utilização de componentes padrões do Material Design
+  * [Retrofit][3], consumo de APIs e gerenciamento de requisições
+  * [Room][4], persistência de dados em banco de dados local
+  * [Parceler][5], para serializar e desserializar objetos compartilhados entre as activities
+  * [Circle Image View][6], criação de views de formato circular para conter a imagem do personagem
+  * [Gson][7], converter objetos para formato JSON antes de persistir em banco (TypeConverter)
 
 Serviços Firebase
 -----------------
   * **Google Analytics para Firebase**, para identificar informações básicas do público que
 está utilizando a aplicação e quais as buscas mais realizadas
   * **Google Admob para Firebase**, para exibir anúncios na versão free do app
+
+[1]: https://github.com/square/picasso/
+[2]: https://material.io/design/
+[3]: https://square.github.io/retrofit/
+[4]: https://developer.android.com/topic/libraries/architecture/room
+[5]: https://github.com/johncarl81/parceler
+[6]: https://github.com/hdodenhof/CircleImageView
+[7]: https://github.com/google/gson

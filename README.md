@@ -15,6 +15,28 @@ A aplicação tem como principais recursos:
   * Permitir acessar rapidamente informações de personagens, ao clicar na listagem do
 widget
 
+<table>
+ <tr>
+  
+  <td>
+   <img src="https://github.com/J-Henrique/Capstone-Project/blob/master/got-collection/docs/images/characters.png" width="200">
+  </td>
+  
+  <td>
+   <img src="https://github.com/J-Henrique/Capstone-Project/blob/master/got-collection/docs/images/favorites.png" width="200">
+  </td>
+  
+  <td>
+   <img src="https://github.com/J-Henrique/Capstone-Project/blob/master/got-collection/docs/images/details.png" width="200">
+  </td>
+  
+  <td>
+   <img src="https://github.com/J-Henrique/Capstone-Project/blob/master/got-collection/docs/images/widget.png" width="200">
+  </td>
+  
+ </tr>
+</table>
+
 Persistência de dados
 ---------------------
 O acesso às informações dos personagens será de duas formas: consumindo uma API ou consultado um banco de dados local.

@@ -56,11 +56,9 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setupPicture(CharacterEntity selectedItem) {
-        String imagePath = getResources().getString(R.string.gotMiscUrl) + selectedItem.getImageLink();
-
         Picasso
             .get()
-            .load(imagePath)
+            .load(selectedItem.getImageLink())
             .placeholder(R.drawable.ic_picture_expanded)
             .noFade()
             .into(mBinding.ivPicture);

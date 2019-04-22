@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="gotApiUrl">https://api.got.show/api/</string>
+    <string name="gotApiUrl">https://api.got.show/api/show/</string>
 </resources>

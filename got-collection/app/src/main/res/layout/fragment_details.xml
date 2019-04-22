@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="@{TextUtils.isEmpty(character.culture) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{TextUtils.isEmpty(character.culture[0]) ? View.GONE : View.VISIBLE}"
             android:orientation="horizontal"
             android:layout_marginBottom="24dp"
             android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                     android:textColor="@color/secondary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{character.culture}"
+                    android:text="@{character.culture[0]}"
                     tools:text="Valyrian" />
             </LinearLayout>
 
@@ -123,42 +123,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:visibility="@{TextUtils.isEmpty(character.books[0]) ? View.GONE : View.VISIBLE}"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@drawable/ic_book"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="@string/details_books"
-                    android:textColor="@color/primary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <ListView
-                    android:id="@+id/lv_books"
-                    android:scrollbars="none"
-                    tools:listitem="@layout/layout_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </LinearLayout>
-
     </LinearLayout>
 
 </layout>

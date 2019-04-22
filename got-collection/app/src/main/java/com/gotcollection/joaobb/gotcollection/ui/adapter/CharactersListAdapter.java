@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAdapter.CharactersViewHolder> {
 
+    private static final String TAG = CharactersListAdapter.class.getSimpleName();
     private List<CharacterEntity> mDataset;
     private Context mContext;
 
@@ -52,11 +54,11 @@ public class CharactersListAdapter extends RecyclerView.Adapter<CharactersListAd
     public void onBindViewHolder(@NonNull CharactersViewHolder charactersViewHolder, int i) {
         final CharacterEntity character = mDataset.get(i);
 
-        String imagePath = mContext.getResources().getString(R.string.gotMiscUrl) + character.getImageLink();
+        Log.v(TAG, "Image URL: " + character.getImageLink());
 
         Picasso
             .get()
-            .load(imagePath)
+            .load(character.getImageLink())
             .noFade()
             .placeholder(R.drawable.ic_picture_icon)
             .resize(80, 80)

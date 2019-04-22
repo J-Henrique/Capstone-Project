@@ -15,51 +15,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:padding="16dp"
-            android:orientation="horizontal"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
             <de.hdodenhof.circleimageview.CircleImageView
-                android:transitionName="transition_picture"
                 android:id="@+id/iv_circle_picture"
-                tools:src="@drawable/ic_picture_icon"
-                android:layout_width="80dp"
-                android:layout_height="80dp" />
+                android:layout_width="96dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:transitionName="transition_picture"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_picture_icon" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_character_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{character.name}"
+                android:textColor="@color/primary_text"
+                android:textSize="24sp"
+                tools:text="Daenerys Targaryen"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toEndOf="@+id/iv_circle_picture"
+                bind:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    tools:text="Daenerys Targaryen"
-                    android:text="@{character.name}"
-                    android:textSize="24sp"
-                    android:textColor="@color/primary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_house_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{character.house}"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp"
+                tools:text="House Targaryen"
+                bind:layout_constraintStart_toEndOf="@+id/iv_circle_picture"
+                bind:layout_constraintTop_toBottomOf="@+id/tv_character_name" />
 
-                <TextView
-                    tools:text="House Targaryen"
-                    android:text="@{character.house}"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_culture_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                tools:text="Valyrian"
+                android:text="@{character.culture[0]}"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp"
+                bind:layout_constraintStart_toEndOf="@+id/iv_circle_picture"
+                bind:layout_constraintTop_toBottomOf="@+id/tv_house_name" />
 
-                <TextView
-                    tools:text="Valyrian"
-                    android:text="@{character.culture}"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
     </android.support.design.card.MaterialCardView>
 </layout>

@@ -10,7 +10,7 @@ import com.gotcollection.joaobb.gotcollection.db.converter.Converters;
 import com.gotcollection.joaobb.gotcollection.db.dao.CharacterDao;
 import com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity;
 
-@Database(entities = {CharacterEntity.class}, version = 1, exportSchema = false )
+@Database(entities = {CharacterEntity.class}, version = 2, exportSchema = false )
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 

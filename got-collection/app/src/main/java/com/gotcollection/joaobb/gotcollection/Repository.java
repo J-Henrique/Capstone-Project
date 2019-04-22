@@ -102,7 +102,7 @@ public class Repository {
 
                 @Override
                 public void onFailure(@NonNull Call<CharacterEntity[]> call, @NonNull Throwable t) {
-                    Log.e(TAG, "onFailure: t", t);
+                    Log.e(TAG, "onFailure: t", t.getCause());
 
                     charactersObservable.setValue(null);
                 }

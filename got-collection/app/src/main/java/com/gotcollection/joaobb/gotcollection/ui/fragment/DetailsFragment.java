@@ -37,7 +37,6 @@ public class DetailsFragment extends Fragment {
         mBinding.setCharacter(character);
 
         setupDynamicListView(mBinding.lvTitles, character.getTitles());
-        setupDynamicListView(mBinding.lvBooks, character.getBooks());
 
         return mBinding.getRoot();
     }

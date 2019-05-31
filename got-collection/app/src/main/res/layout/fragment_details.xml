@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,118 +12,80 @@
             type="com.gotcollection.joaobb.gotcollection.db.entity.CharacterEntity" />
     </data>
 
-    <LinearLayout
-        android:backgroundTint="@color/primary_light"
-        android:orientation="vertical"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:visibility="@{TextUtils.isEmpty(character.house) ? View.GONE : View.VISIBLE}"
-            android:layout_marginBottom="24dp"
-            android:orientation="horizontal"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_house"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:src="@drawable/ic_house"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="@string/details_house"
-                    android:textColor="@color/primary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:textSize="24sp"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{character.house}"
-                    tools:text="House Stark" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="@{TextUtils.isEmpty(character.culture[0]) ? View.GONE : View.VISIBLE}"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp"
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/details_house"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:src="@drawable/ic_masks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="@string/details_culture"
-                    android:textColor="@color/primary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:textSize="24sp"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{character.culture[0]}"
-                    tools:text="Valyrian" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="@{TextUtils.isEmpty(character.titles[0]) ? View.GONE : View.VISIBLE}"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{character.house}"
+            android:textColor="@color/secondary_text"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:text="House Stark" />
 
-            <ImageView
-                android:src="@drawable/ic_quotation_mark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <android.support.constraint.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="textView2,textView3,imageView" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_masks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-                <TextView
-                    android:text="@string/details_title"
-                    android:textColor="@color/primary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/details_culture"
+            android:textColor="@color/primary_text"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-                <ListView
-                    android:id="@+id/lv_titles"
-                    android:scrollbars="none"
-                    tools:listitem="@layout/layout_row"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{character.culture[0]}"
+            android:textColor="@color/secondary_text"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="Valyrian" />
 
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

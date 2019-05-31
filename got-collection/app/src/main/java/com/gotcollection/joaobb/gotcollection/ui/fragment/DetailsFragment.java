@@ -36,15 +36,6 @@ public class DetailsFragment extends Fragment {
         character = Parcels.unwrap(getArguments().getParcelable(ARGS_CHARACTER));
         mBinding.setCharacter(character);
 
-        setupDynamicListView(mBinding.lvTitles, character.getTitles());
-
         return mBinding.getRoot();
-    }
-
-    private void setupDynamicListView(ListView listView, String[] objectsArray) {
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), R.layout.layout_row, objectsArray);
-        listView.setAdapter(arrayAdapter);
-
-        ListViewDynamicHeightUtils.setListViewHeightBasedOnChildren(listView);
     }
 }
